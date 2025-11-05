@@ -16,10 +16,10 @@ import javafx.stage.Stage;
  *
  * @author sahel
  */
-public class Project extends Application {
+public class Main extends Application {
 
     public static void main(String[] args) {
-        Application.launch(Project.class, args);
+        Application.launch(Main.class, args);
     }
 
     @Override
