@@ -9,11 +9,10 @@ package models;
  * @author Usman
  */
 public class Person {
-    private int height; // The height of the person
     private int weight; // The weight of the person
-    private int projectedArea; // Surface area of the side that is facing air flow
+    private double projectedArea = 0.6; // [m^2] Surface area of the side that is facing air flow, using 0.6 as an average because it would be too hard to calculat it for everyone
     
-    public Person() {
-        
+    public Person(int height, int weight) {
+        this.weight = weight;
     }
 }
