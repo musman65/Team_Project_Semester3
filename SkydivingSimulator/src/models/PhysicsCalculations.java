@@ -33,6 +33,23 @@ public class PhysicsCalculations {
         return (m * 9.8);
     }
     
+    public double getDragForce(int order, double vi, double a) {
+        double drag = 0.5 * 1.225 * getSpeed(vi, a) * getSpeed(vi, a) * params.getDragFactor();
+        
+        switch (order) {
+            case 1 -> {
+                return drag * params.getDC1() * params.getA1();
+            }
+            case 2 -> {
+                return drag * params.getDC2() * params.getA2();
+            }
+            case 3 -> {
+                return drag * params.getDC3() * params.getA3();
+            }
+        }
+        return 0.0;
+    }
+    
     public double getSpeed(double vi, double a) {
         return (vi + a * t);
     }
@@ -40,4 +57,5 @@ public class PhysicsCalculations {
     public double getVerticalHeight(double yi, double vi, double a) {
         return (yi + vi*t + 0.5*a*(t*t));
     }
+    
 }
