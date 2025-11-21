@@ -25,6 +25,7 @@ skydiver-simulator/
 ## Important Link(s):
 
  * Our Trello board: https://trello.com/b/K1BGEXcK/team-proposal
+ * How to work with branches: https://gist.github.com/Alinaprotsyuk/3d58f8cd52eb03a11283d64beb0e083e
 
 ## Requirements
 
