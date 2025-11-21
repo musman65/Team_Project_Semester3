@@ -7,7 +7,8 @@ package models;
 /*
 TODO BY: Usman
 Contains the methods used to calculate the forces
-by inputting the parameters such as mass, etc.
+by inputting the parameters such as mass, etc 
+using the Euler Method.
 */
 
 /**
