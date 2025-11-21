@@ -1,4 +1,4 @@
-# Skydiving Project README
+# Skydiving Simulator
 
 ## Overview
 
@@ -13,7 +13,7 @@ This project simulates and analyzes the physics, mechanics, and experience of sk
 ## Project Structure
 
 ```
-skydive-project/
+skydiver-simulator/
 ├── src/
 │   ├── models/              # Motion equations, drag models, environment
 │   ├── views/               # Interface and controls
@@ -22,9 +22,13 @@ skydive-project/
 └── README.md           # This file
 ```
 
+## Important Link(s):
+
+ * Our Trello board: https://trello.com/b/K1BGEXcK/team-proposal
+
 ## Requirements
 
-* Language: **
+* Language: *Java*
 * Dependencies:
 
   * *JavaFX*
@@ -34,17 +38,12 @@ skydive-project/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-org/skydiving-project
+   git clone https://github.com/musman65/Team_Project_Semester3.git
    ```
 2. Navigate into the project folder:
 
    ```bash
    cd skydiving-project
-   ```
-3. Install dependencies:
-
-   ```bash
-   # Add your dependency installation commands here
    ```
    
 
