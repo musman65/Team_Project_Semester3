@@ -23,4 +23,21 @@ public class Skydiver {
         return null;
     }
     
+    public double getCurrentPosition() {
+        return 0.0;
+    }
+    
+    public double getCurrentSpeed() {
+        return 0.0;
+    }
+    
+    public double getCurrentAcceleration() {
+        return 0.0;
+    }
+    
+    public double getCurrentNetForce() {
+        return 0.0;
+    }
+    
+    
 }
