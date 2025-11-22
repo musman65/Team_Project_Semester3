@@ -20,8 +20,9 @@ public class PhysicsCalculations {
     public PhysicsCalculations(Skydiver diver) {
         if (diver  == null) {
             //TODO
+        } else {        
+            this.diver = diver;
         }
-        this.diver = diver;
         this.params = diver.getParams();
         t = params.getDeltaTime();
         m = params.getMass();
@@ -33,10 +34,10 @@ public class PhysicsCalculations {
         return (m * 9.8);
     }
     
-    public double getDragForce(int order, double vi, double a) {
-        double drag = 0.5 * 1.225 * getSpeed(vi, a) * getSpeed(vi, a) * params.getDragFactor();
+    public double getDragForce(int parachuteOrder, double currentSpeed) {
+        double drag = 0.5 * 1.225 * currentSpeed * currentSpeed * params.getDragFactor();
         
-        switch (order) {
+        switch (parachuteOrder) {
             case 1 -> {
                 return drag * params.getDC1() * params.getA1();
             }
@@ -56,6 +57,14 @@ public class PhysicsCalculations {
     
     public double getVerticalHeight(double yi, double vi, double a) {
         return (yi + vi*t + 0.5*a*(t*t));
+    }
+    
+    public double getNetForce(double dragForce) {
+        return (dragForce - this.getWeight());
+    }
+    
+    public double getAcceleration(double netForce) {
+        return (netForce / m);
     }
     
 }
