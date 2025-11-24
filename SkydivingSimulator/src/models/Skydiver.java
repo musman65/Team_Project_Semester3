@@ -27,7 +27,7 @@ public class Skydiver {
         return 0.0;
     }
     
-    public double getCurrentSpeed() {
+    public double getCurrentVelocity() {
         return 0.0;
     }
     

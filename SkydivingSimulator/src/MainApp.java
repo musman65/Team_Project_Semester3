@@ -23,7 +23,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-      Parent root = FXMLLoader.load(getClass().getResource("/views/file.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));
 
         stage.setTitle("Skydiving/Parachute Simulator");
         stage.setScene(new Scene(root));

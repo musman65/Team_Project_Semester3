@@ -51,16 +51,16 @@ public class PhysicsCalculations {
         return 0.0;
     }
     
-    public double getSpeed(double vi, double a) {
-        return (vi + a * t);
+    public double getVelocity(double vi, double ai) {
+        return (vi + ai * t);
     }
     
-    public double getVerticalHeight(double yi, double vi, double a) {
-        return (yi + vi*t + 0.5*a*(t*t));
+    public double getPostion(double yi, double vi, double ai) {
+        return (yi + vi*t + 0.5*ai*(t*t));
     }
     
-    public double getNetForce(double dragForce) {
-        return (dragForce - this.getWeight());
+    public double getNetForce(double currentDragForce) {
+        return (currentDragForce - this.getWeight());
     }
     
     public double getAcceleration(double netForce) {
