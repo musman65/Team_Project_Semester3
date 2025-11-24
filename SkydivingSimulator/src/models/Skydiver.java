@@ -17,5 +17,27 @@ velocity, acceleration, and methods to update them.
  * @author Usman
  */
 public class Skydiver {
+    // Methods only made to remove errors from code, they will written by Aswinth 
+    
+    public SimulationParameters getParams() {
+        return null;
+    }
+    
+    public double getCurrentPosition() {
+        return 0.0;
+    }
+    
+    public double getCurrentVelocity() {
+        return 0.0;
+    }
+    
+    public double getCurrentAcceleration() {
+        return 0.0;
+    }
+    
+    public double getCurrentNetForce() {
+        return 0.0;
+    }
+    
     
 }
