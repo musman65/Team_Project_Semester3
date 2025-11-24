@@ -20,7 +20,7 @@ public class SimulationEngine {
     private PhysicsCalculations pc;
     private double[] initialCondition = new double[4];
     
-    // TIme related fields
+    // Time related fields
     private double timeframe = diver.getParams().getDeltaTime();
     private double deployementOfSmallParachute; // TBD
     private double deployementOfBigParachute; // TBD
