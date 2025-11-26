@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartScreenController">
+   <children>
+      <ImageView fitHeight="614.0" fitWidth="921.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="C:\Users\6321596\Pictures\Skydiving Image.jpg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.45" />
+         </effect>
+      </ImageView>
+      <Label layoutX="202.0" layoutY="234.0" prefHeight="73.0" prefWidth="507.0" text="Skydiving Simulation" textFill="#fcfcfc">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Button layoutX="314.0" layoutY="324.0" mnemonicParsing="false" onAction="#enter" style="-fx-background-color: #27F561;" text="Enter Simulation">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="385.0" layoutY="416.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: #F53827;" text="Exit Application">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

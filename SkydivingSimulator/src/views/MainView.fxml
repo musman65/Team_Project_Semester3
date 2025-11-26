@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="684.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="684.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainViewController">
    <children>
       <TableView layoutX="342.0" layoutY="221.0" prefHeight="200.0" prefWidth="326.0">
         <columns>
@@ -86,31 +86,31 @@
       </Label>
       <VBox layoutX="110.0" layoutY="235.0" prefHeight="188.0" prefWidth="181.0" spacing="10.0">
          <children>
-            <Button fx:id="startButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
             <HBox prefHeight="39.0" prefWidth="187.0" spacing="27.0">
                <children>
-                  <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pause" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#reset" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="displayButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Display Graphs">
+            <Button fx:id="displayButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#displaygraph" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Display Graphs">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="returnButton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to menu">
+            <Button fx:id="returnButton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" onAction="#returnmenu" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to menu">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -119,5 +119,3 @@
       </VBox>
    </children>
 </Pane>
- 
-
