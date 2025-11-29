@@ -13,15 +13,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="684.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="764.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SimulationController">
    <children>
-      <TableView layoutX="342.0" layoutY="221.0" prefHeight="200.0" prefWidth="326.0">
+      <TableView fx:id="tableOfData" layoutX="342.0" layoutY="221.0" prefHeight="200.0" prefWidth="404.0">
         <columns>
           <TableColumn fx:id="timeCol" prefWidth="57.5999755859375" text="Time" />
-          <TableColumn fx:id="heightCol" prefWidth="59.20001220703125" text="Height" />
-            <TableColumn fx:id="velocityCol" prefWidth="59.999969482421875" text="Velocity" />
-            <TableColumn fx:id="accelerationCol" prefWidth="74.4000244140625" text="Acceleration" />
-            <TableColumn fx:id="forceCol" prefWidth="76.0" text="Force" />
+          <TableColumn fx:id="heightCol" prefWidth="100.0" sortable="false" text="Height" />
+            <TableColumn fx:id="velocityCol" sortable="false" text="Velocity" />
+            <TableColumn fx:id="accelerationCol" prefWidth="74.4000244140625" sortable="false" text="Acceleration" />
+            <TableColumn fx:id="forceCol" prefWidth="90.0" sortable="false" text="Force" />
         </columns>
       </TableView>
       <HBox layoutY="54.0" prefHeight="164.0" prefWidth="485.0">
@@ -86,31 +86,31 @@
       </Label>
       <VBox layoutX="110.0" layoutY="235.0" prefHeight="188.0" prefWidth="181.0" spacing="10.0">
          <children>
-            <Button fx:id="startButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
+            <Button fx:id="startButton" mnemonicParsing="false" onMouseClicked="#startButtonClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
             <HBox prefHeight="39.0" prefWidth="187.0" spacing="27.0">
                <children>
-                  <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onMouseClicked="#pauseButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
+                  <Button fx:id="resetButton" mnemonicParsing="false" onMouseClicked="#resetButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="displayButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Display Graphs">
+            <Button fx:id="displayButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#displayGraphsClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Display Graphs">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="returnButton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to menu">
+            <Button fx:id="returnButton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#returnToMenuClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to menu">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -119,5 +119,3 @@
       </VBox>
    </children>
 </Pane>
- 
-
