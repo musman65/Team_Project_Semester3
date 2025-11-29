@@ -4,14 +4,14 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GraphsController">
    <children>
       <LineChart fx:id="posChart" prefHeight="333.0" prefWidth="561.0" title="Position Time Graph">
         <xAxis>
           <NumberAxis fx:id="pos" prefWidth="504.0" side="BOTTOM" upperBound="300.0" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis side="LEFT" upperBound="10000.0" />
         </yAxis>
       </LineChart>
       <LineChart fx:id="speedChart" layoutY="333.0" prefHeight="333.0" prefWidth="561.0" title="Velocity Time Graph">
@@ -19,7 +19,7 @@
             <NumberAxis fx:id="speed" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis lowerBound="-50.0" side="LEFT" upperBound="50.0" />
          </yAxis>
       </LineChart>
       <LineChart fx:id="accelChart" layoutX="559.0" layoutY="6.0" prefHeight="330.0" prefWidth="561.0" title="Acceleration Time Graph">

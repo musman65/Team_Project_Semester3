@@ -140,19 +140,27 @@ public class SimulationController {
     
     @FXML
     void displayGraphsClicked(MouseEvent event) throws IOException {
-        if (graphsController == null) {
+        if (this.graphsController == null) {
+            // Load FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Graphs.fxml"));
-            Parent root = loader.load();
+            Parent root = loader.load(); // <-- this instantiates the GraphsController
 
-            graphsController = loader.getController();
+            // Get the actual controller created by FXMLLoader
+            this.graphsController = loader.getController();
+            System.out.println("Controller after load: " + this.graphsController); // should be non-null
+
+            // Create and show stage
             Stage stage = new Stage();
             stage.setTitle("Graphs");
             stage.setScene(new Scene(root));
-            System.out.println(graphsController);
-            graphsController.setStage(stage);
+
+            // Optionally let controller know about its stage
+            this.graphsController.setStage(stage);
+
             stage.show();
+            
         } else {
-            graphsController.getStage().toFront();
+            this.graphsController.getStage().show();
         }
     }
 

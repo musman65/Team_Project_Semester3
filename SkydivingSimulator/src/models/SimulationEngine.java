@@ -23,7 +23,7 @@ public class SimulationEngine {
     // Time related fields
     private double timeframe;
     private double deployementOfSmallParachute = 30; // TBD
-    private double deployementOfBigParachute = 32; // TBD
+    private double deployementOfBigParachute = 35; // TBD
     
     public SimulationEngine(Skydiver diver) {
         if (diver == null) {
