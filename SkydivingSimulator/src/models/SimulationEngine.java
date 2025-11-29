@@ -50,11 +50,11 @@ public class SimulationEngine {
             orderOfParachute = 2;
         } else if (timeframe >= deployementOfBigParachute) { // DEPLOS BIG PARACHUTE
             orderOfParachute = 3;
+            diver.getParams().updateA3();
         } else if (timeframe < deployementOfSmallParachute) { // FREEFALL
             orderOfParachute = 1;
         }
         double currentDragForce = pc.getDragForce(orderOfParachute, currentVelocity);
-        System.out.println(currentDragForce);
         double currentNetForce = pc.getNetForce(currentDragForce);
         double currentAcceleration = pc.getAcceleration(currentNetForce);
 

@@ -8,7 +8,6 @@ simulation engine.
 */
 
 import java.io.IOException;
-import java.util.Arrays;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -43,7 +42,7 @@ public class SimulationController {
     
     @FXML
     private TableColumn<SimulationResults, Double> accelerationCol;
-
+    
     @FXML
     private Button displayButton;
 
@@ -70,9 +69,6 @@ public class SimulationController {
 
     @FXML
     private Button resetButton;
-
-    @FXML
-    private Button returnButton;
 
     @FXML
     private Button startButton;
@@ -141,20 +137,14 @@ public class SimulationController {
     @FXML
     void displayGraphsClicked(MouseEvent event) throws IOException {
         if (this.graphsController == null) {
-            // Load FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Graphs.fxml"));
-            Parent root = loader.load(); // <-- this instantiates the GraphsController
-
-            // Get the actual controller created by FXMLLoader
+            Parent root = loader.load();
             this.graphsController = loader.getController();
-            System.out.println("Controller after load: " + this.graphsController); // should be non-null
 
-            // Create and show stage
             Stage stage = new Stage();
             stage.setTitle("Graphs");
             stage.setScene(new Scene(root));
 
-            // Optionally let controller know about its stage
             this.graphsController.setStage(stage);
 
             stage.show();
@@ -182,13 +172,9 @@ public class SimulationController {
         timeline.stop();
         timeline = null;
         engine = null;
+        graphsController = null;
         tableOfData.getItems().clear();
         pauseButton.setText("Pause");
-    }
-
-    @FXML
-    void returnToMenuClicked(MouseEvent event) {
-
     }
 
     @FXML
@@ -208,6 +194,16 @@ public class SimulationController {
             default -> 1;
         };
         
+        
+        // Input verification to be done here by Sahel What to verify:
+        /*
+        If all fields are numbers
+        Height should be bigger than 2000m
+        Mass should be bigger than 50kg and lower than 150kg
+        Time step should be bigger than 0.01 and smaller than 0.1
+        If not, make an alert box pop up!
+        */
+        
         double mass = Double.parseDouble(diverMass);
         double deltaTime = Double.parseDouble(timeStep);
         double startPos = Double.parseDouble(startingPosition);
@@ -223,9 +219,21 @@ public class SimulationController {
                 double timeF = engine.getTimeframe();
         
                 double[] row = engine.computationOfOneRow();
-                System.out.println(Arrays.toString(row));
                 if (row[0] <= 0) {
                     timeline.stop();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ResultsSummary.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        ResultsController rc = loader.getController();
+                        System.out.println(timeF);
+                        rc.setTimeTaken(timeF);
+                        Stage stage = new Stage();
+                        stage.setTitle("Hooray!");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException ex) {
+                        System.getLogger(SimulationController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                    }
                 }
                 
                 if (graphsController != null) {

@@ -110,11 +110,6 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="returnButton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#returnToMenuClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to menu">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </children>
