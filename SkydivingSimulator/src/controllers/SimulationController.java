@@ -7,11 +7,15 @@ actions in the UI to updates in the model and
 simulation engine.
 */
 
+import java.io.IOException;
 import java.util.Arrays;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -21,6 +25,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import models.SimulationEngine;
 import models.SimulationParameters;
@@ -34,6 +39,7 @@ import models.Skydiver;
 public class SimulationController {
     SimulationEngine engine;
     Timeline timeline;
+    GraphsController graphsController;
     
     @FXML
     private TableColumn<SimulationResults, Double> accelerationCol;
@@ -91,6 +97,34 @@ public class SimulationController {
     
     @FXML
     public void initialize() {
+        startButton.setDisable(true);
+        heightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        weightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        timeTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
         timeCol.setReorderable(false);
         heightCol.setReorderable(false);
         accelerationCol.setReorderable(false);
@@ -105,8 +139,21 @@ public class SimulationController {
     }
     
     @FXML
-    void displayGraphsClicked(MouseEvent event) {
+    void displayGraphsClicked(MouseEvent event) throws IOException {
+        if (graphsController == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Graphs.fxml"));
+            Parent root = loader.load();
 
+            graphsController = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Graphs");
+            stage.setScene(new Scene(root));
+            System.out.println(graphsController);
+            graphsController.setStage(stage);
+            stage.show();
+        } else {
+            graphsController.getStage().toFront();
+        }
     }
 
     @FXML
@@ -172,6 +219,11 @@ public class SimulationController {
                 if (row[0] <= 0) {
                     timeline.stop();
                 }
+                
+                if (graphsController != null) {
+                    graphsController.addPointToGraphs(timeF, row[2], row[1], row[0]);
+                }
+                
                 SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
                 tableOfData.scrollTo(tableOfData.getItems().size());
                 tableOfData.getItems().add(sr);

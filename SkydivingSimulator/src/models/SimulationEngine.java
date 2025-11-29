@@ -66,7 +66,7 @@ public class SimulationEngine {
         double [] newConditions = {currentPosition, currentVelocity, currentAcceleration, currentNetForce};
         initialCondition = newConditions;
         timeframe += diver.getParams().getDeltaTime();
-        timeframe = Double.parseDouble(String.format("%.1f", timeframe)); 
+        timeframe = Double.parseDouble(String.format("%.3f", timeframe)); 
         return newConditions;
     } 
 

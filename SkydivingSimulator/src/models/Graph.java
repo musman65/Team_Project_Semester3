@@ -9,5 +9,7 @@ package models;
  * @author Usman
  */
 public class Graph {
-    
+    public static void addPositionPoint() {
+        
+    }
 }
