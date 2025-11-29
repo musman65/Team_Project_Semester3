@@ -54,6 +54,7 @@ public class SimulationEngine {
             orderOfParachute = 1;
         }
         double currentDragForce = pc.getDragForce(orderOfParachute, currentVelocity);
+        System.out.println(currentDragForce);
         double currentNetForce = pc.getNetForce(currentDragForce);
         double currentAcceleration = pc.getAcceleration(currentNetForce);
 
@@ -71,8 +72,5 @@ public class SimulationEngine {
 
     public double getTimeframe() {
         return timeframe;
-    }
-    
-    
-    
+    }    
 }

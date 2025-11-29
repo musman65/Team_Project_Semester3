@@ -24,64 +24,21 @@ public class SimulationParameters {
     private double deltaTime;
     private double mass;
 
-    public void SimulationParamters(double DragFactor, double DC1, double DC2, double DC3, double A1,
-            double A2, double A3, double deltaTime, double mass) {
+    public SimulationParameters(double DragFactor, double deltaTime, double mass) {
         if (mass <= 0) {
             mass = 1;
         } else {
-            this.mass = 0;
+            this.mass = mass;
         }
 
         if (deltaTime <= 0) {
             deltaTime = 0.1;
         } else {
-            this.deltaTime = 0;
-        }
+            this.deltaTime = deltaTime;
 
-        if (DC1 <= 0) {
-            DC1 = 1;
-        } else {
-            this.DC1 = 0;
-        }
-
-        if (DC2 <= 0) {
-            DC2 = 1;
-        } else {
-            this.DC2 = 0;
-        }
-
-        if (DC3 <= 0) {
-            DC3 = 1;
-        } else {
-            this.DC3 = 0;
-        }
-
-        if (A1 <= 0) {
-            A1 = 1;
-        } else {
-            this.A1 = 0;
-        }
-
-        if (A2 <= 0) {
-            A2 = 1;
-        } else {
-            this.A2 = 0;
-        }
-
-        if (A3 <= 0) {
-            A3 = 1;
-        } else {
-            this.A3 = 0;
         }
 
         this.DragFactor = DragFactor;
-        this.DC1 = DC1;
-        this.DC2 = DC2;
-        this.DC3 = DC3;
-        this.A1 = A1;
-        this.A2 = A2;
-        this.A3 = A3;
-        this.deltaTime = deltaTime;
     }
 
     public double getDragFactor() {
