@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartScreenController">
    <children>
       <ImageView fitHeight="614.0" fitWidth="921.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\6321596\Pictures\Skydiving Image.jpg" />
+            <Image url="https://t4.ftcdn.net/jpg/05/00/70/11/360_F_500701109_ajUcBCDsvxyy0x7sWji9lXjaU8Igq5Ah.jpg" />
          </image>
          <effect>
             <ColorAdjust brightness="-0.45" />
