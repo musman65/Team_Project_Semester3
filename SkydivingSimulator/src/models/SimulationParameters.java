@@ -15,12 +15,12 @@ TODO BY: Aswinth
 public class SimulationParameters {
 
     private double DragFactor;
-    private double DC1;
-    private double DC2;
-    private double DC3;
-    private double A1;
-    private double A2;
-    private double A3;
+    private double DC1 = 0.5;
+    private double DC2 = 1.25;
+    private double DC3 = 1.75;
+    private double A1 = 1.91;
+    private double A2 = 1.5;
+    private double A3 = 13;
     private double deltaTime;
     private double mass;
 
@@ -31,11 +31,10 @@ public class SimulationParameters {
             this.mass = mass;
         }
 
-        if (deltaTime <= 0) {
+        if (deltaTime <= 0 || deltaTime >= 0.5) {
             deltaTime = 0.1;
         } else {
             this.deltaTime = deltaTime;
-
         }
 
         this.DragFactor = DragFactor;
@@ -75,5 +74,10 @@ public class SimulationParameters {
 
     public double getMass() {
         return mass;
+    }
+    
+    @Override
+    public String toString() {
+        return "Mass: " + mass + ", Delta Time: " + deltaTime + ", Drag Factor: " + DragFactor;
     }
 }
