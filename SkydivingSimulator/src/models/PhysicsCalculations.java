@@ -36,7 +36,6 @@ public class PhysicsCalculations {
     
     public double getDragForce(int parachuteOrder, double currentSpeed) {
         double drag = 0.5 * 1.225 * currentSpeed * currentSpeed * params.getDragFactor();
-        
         switch (parachuteOrder) {
             case 1 -> {
                 return drag * params.getDC1() * params.getA1();

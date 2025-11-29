@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <LineChart fx:id="posChart" prefHeight="333.0" prefWidth="561.0" title="Position Time Graph">
+        <xAxis>
+          <CategoryAxis fx:id="pos" prefWidth="504.0" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart fx:id="speedChart" layoutY="333.0" prefHeight="333.0" prefWidth="561.0" title="Speed Time Graph">
+         <xAxis>
+            <CategoryAxis fx:id="speed" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="accelChart" layoutX="559.0" layoutY="6.0" prefHeight="330.0" prefWidth="561.0" title="Acceleration Time Graph">
+         <xAxis>
+            <CategoryAxis fx:id="accel" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

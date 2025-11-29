@@ -20,10 +20,10 @@ public class SimulationEngine {
     private PhysicsCalculations pc;
     private double[] initialCondition = new double[4];
     
-    // TIme related fields
-    private double timeframe = diver.getParams().getDeltaTime();
-    private double deployementOfSmallParachute; // TBD
-    private double deployementOfBigParachute; // TBD
+    // Time related fields
+    private double timeframe;
+    private double deployementOfSmallParachute = 30; // TBD
+    private double deployementOfBigParachute = 32; // TBD
     
     public SimulationEngine(Skydiver diver) {
         if (diver == null) {
@@ -35,7 +35,10 @@ public class SimulationEngine {
         initialCondition[0] = diver.getCurrentPosition(); // 0 :Postion
         initialCondition[1] = diver.getCurrentVelocity(); // 1 : Velocity
         initialCondition[2] = diver.getCurrentAcceleration(); // 2 : Acceleration
-        initialCondition[3] = diver.getCurrentNetForce(); // 3 : Net Force
+        initialCondition[3] = pc.getNetForce(pc.getDragForce(1, diver.getCurrentVelocity())); // 3 : Net Force
+        
+        timeframe = diver.getParams().getDeltaTime();
+        
     }
     
     public double[] computationOfOneRow() {
@@ -44,23 +47,32 @@ public class SimulationEngine {
         int orderOfParachute = 1;
         
         if (timeframe >= deployementOfSmallParachute && timeframe < deployementOfBigParachute) { // DEPLOYS SMALL PARACHUTE
-            orderOfParachute = 1;
+            orderOfParachute = 2;
         } else if (timeframe >= deployementOfBigParachute) { // DEPLOS BIG PARACHUTE
-            orderOfParachute = 1;
+            orderOfParachute = 3;
         } else if (timeframe < deployementOfSmallParachute) { // FREEFALL
             orderOfParachute = 1;
         }
-        
         double currentDragForce = pc.getDragForce(orderOfParachute, currentVelocity);
         double currentNetForce = pc.getNetForce(currentDragForce);
         double currentAcceleration = pc.getAcceleration(currentNetForce);
-        
+
+        currentPosition = Double.parseDouble(String.format("%.2f", currentPosition)); 
+        currentVelocity = Double.parseDouble(String.format("%.2f", currentVelocity)); 
+//        currentAcceleration = Double.parseDouble(String.format("%.2f", currentAcceleration)); 
+        currentNetForce = Double.parseDouble(String.format("%.2f", currentNetForce)); 
         
         double [] newConditions = {currentPosition, currentVelocity, currentAcceleration, currentNetForce};
         initialCondition = newConditions;
         timeframe += diver.getParams().getDeltaTime();
-        
+        timeframe = Double.parseDouble(String.format("%.1f", timeframe)); 
         return newConditions;
     } 
+
+    public double getTimeframe() {
+        return timeframe;
+    }
+    
+    
     
 }
