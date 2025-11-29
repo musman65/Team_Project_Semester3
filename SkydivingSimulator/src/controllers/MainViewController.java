@@ -9,8 +9,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -65,11 +68,41 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        startButton.setDisable(true);
+        heightTextField.setOnKeyPressed(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        weightTextField.setOnKeyPressed(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        timeTextField.setOnKeyPressed(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        
+        
+    }
 
     @FXML
     private void start(ActionEvent event) {
+        
         
         
         
@@ -77,25 +110,25 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void pause(ActionEvent event) {
-        
-        
-        
+
     }
 
     @FXML
     private void reset(ActionEvent event) {
-        
-        
+
     }
 
     @FXML
     private void displaygraph(ActionEvent event) {
+        
     }
 
     @FXML
     private void returnmenu(ActionEvent event) throws IOException {
-            
-        
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/StartScreen.fxml"));
+        stage.getScene().setRoot(root);
+
     }
-    
+
 }
