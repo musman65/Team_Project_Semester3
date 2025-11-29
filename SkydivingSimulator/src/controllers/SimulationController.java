@@ -1,11 +1,6 @@
 package controllers;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/*
 TODO BY: Aswinth & Sahel (work on it one at a time)
 Coordinates application flow, connecting user
 actions in the UI to updates in the model and 
@@ -37,7 +32,7 @@ import models.Skydiver;
  * @author 2472557
  */
 public class SimulationController {
-     SimulationEngine engine;
+    SimulationEngine engine;
     Timeline timeline;
     
     @FXML
@@ -129,7 +124,11 @@ public class SimulationController {
 
     @FXML
     void resetButtonClicked(MouseEvent event) {
-
+        timeline.stop();
+        timeline = null;
+        engine = null;
+        tableOfData.getItems().clear();
+        pauseButton.setText("Pause");
     }
 
     @FXML
@@ -165,11 +164,14 @@ public class SimulationController {
         }
         
         if (timeline == null) {
-            timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+            timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
                 double timeF = engine.getTimeframe();
         
                 double[] row = engine.computationOfOneRow();
                 System.out.println(Arrays.toString(row));
+                if (row[0] <= 0) {
+                    timeline.stop();
+                }
                 SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
                 tableOfData.scrollTo(tableOfData.getItems().size());
                 tableOfData.getItems().add(sr);

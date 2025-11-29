@@ -22,12 +22,12 @@ public class Skydiver {
     private double currentVelocity;
     private double currentAcceleration;
     private double currentNetForce;
-
+    
     public Skydiver(double CurrentPosition, double CurrentVelocity, double CurrentAcceleration, SimulationParameters Params) {
         this.currentPosition = CurrentPosition;
         this.currentAcceleration = CurrentAcceleration;
         this.currentVelocity = CurrentVelocity;
-        this.Params = Params;
+        this.Params = Params; 
     }
 
     public SimulationParameters getParams() {
