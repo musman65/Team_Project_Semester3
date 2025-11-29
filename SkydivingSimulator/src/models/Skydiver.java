@@ -17,19 +17,17 @@ velocity, acceleration, and methods to update them.
  */
 public class Skydiver {
 
-    private SimulationParameters Params = new SimulationParameters();
-    private double CurrentPosition;
-    private double CurrentVelocity;
-    private double CurrentAcceleration;
-    private double CurrentNetForce;
-    
-    public void Skydiver(double CurrentPosition, double CurrentVelocity, double CurrentAcceleration, double CurrentNetForce, SimulationParameters Params) {
-        this.CurrentPosition = CurrentPosition;
-        this.CurrentAcceleration = CurrentAcceleration;
-        this.CurrentNetForce = CurrentNetForce;
-        this.CurrentVelocity = CurrentVelocity;
+    private SimulationParameters Params;
+    private double currentPosition;
+    private double currentVelocity;
+    private double currentAcceleration;
+    private double currentNetForce;
+
+    public Skydiver(double CurrentPosition, double CurrentVelocity, double CurrentAcceleration, SimulationParameters Params) {
+        this.currentPosition = CurrentPosition;
+        this.currentAcceleration = CurrentAcceleration;
+        this.currentVelocity = CurrentVelocity;
         this.Params = Params;
-        
     }
 
     public SimulationParameters getParams() {
@@ -37,19 +35,19 @@ public class Skydiver {
     }
 
     public double getCurrentPosition() {
-        return 0.0;
+        return currentPosition;
     }
 
     public double getCurrentVelocity() {
-        return 0.0;
+        return currentVelocity;
     }
 
     public double getCurrentAcceleration() {
-        return 0.0;
+        return currentAcceleration;
     }
 
     public double getCurrentNetForce() {
-        return 0.0;
+        return currentNetForce;
     }
 
 }
