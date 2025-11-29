@@ -23,7 +23,7 @@ public class SimulationEngine {
     // Time related fields
     private double timeframe;
     private double deployementOfSmallParachute = 30; // TBD
-    private double deployementOfBigParachute = 32; // TBD
+    private double deployementOfBigParachute = 35; // TBD
     
     public SimulationEngine(Skydiver diver) {
         if (diver == null) {
@@ -50,11 +50,11 @@ public class SimulationEngine {
             orderOfParachute = 2;
         } else if (timeframe >= deployementOfBigParachute) { // DEPLOS BIG PARACHUTE
             orderOfParachute = 3;
+            diver.getParams().updateA3();
         } else if (timeframe < deployementOfSmallParachute) { // FREEFALL
             orderOfParachute = 1;
         }
         double currentDragForce = pc.getDragForce(orderOfParachute, currentVelocity);
-        System.out.println(currentDragForce);
         double currentNetForce = pc.getNetForce(currentDragForce);
         double currentAcceleration = pc.getAcceleration(currentNetForce);
 
@@ -66,7 +66,7 @@ public class SimulationEngine {
         double [] newConditions = {currentPosition, currentVelocity, currentAcceleration, currentNetForce};
         initialCondition = newConditions;
         timeframe += diver.getParams().getDeltaTime();
-        timeframe = Double.parseDouble(String.format("%.1f", timeframe)); 
+        timeframe = Double.parseDouble(String.format("%.3f", timeframe)); 
         return newConditions;
     } 
 

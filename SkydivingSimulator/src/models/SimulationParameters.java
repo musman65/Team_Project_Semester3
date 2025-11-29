@@ -20,7 +20,12 @@ public class SimulationParameters {
     private double DC3 = 1.75;
     private double A1 = 1.91;
     private double A2 = 1.5;
-    private double A3 = 13;
+    private double A3Start = 1.5;
+    private double A3 = A3Start;
+    private double A3End = 13;
+    private double fullCanopyDeploymentTime = 5.0; // in Seconds
+    private double A3Step = A3End / (fullCanopyDeploymentTime * 10) ;
+    
     private double deltaTime;
     private double mass;
 
@@ -39,7 +44,13 @@ public class SimulationParameters {
 
         this.DragFactor = DragFactor;
     }
-
+    
+    public void updateA3() {
+        if (!(A3 >= A3End)) {            
+            this.A3 += A3Step;
+        }
+    }
+    
     public double getDragFactor() {
         return DragFactor;
     }

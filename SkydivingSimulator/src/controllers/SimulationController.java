@@ -7,11 +7,14 @@ actions in the UI to updates in the model and
 simulation engine.
 */
 
-import java.util.Arrays;
+import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -21,6 +24,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import models.SimulationEngine;
 import models.SimulationParameters;
@@ -34,10 +38,11 @@ import models.Skydiver;
 public class SimulationController {
     SimulationEngine engine;
     Timeline timeline;
+    GraphsController graphsController;
     
     @FXML
     private TableColumn<SimulationResults, Double> accelerationCol;
-
+    
     @FXML
     private Button displayButton;
 
@@ -66,9 +71,6 @@ public class SimulationController {
     private Button resetButton;
 
     @FXML
-    private Button returnButton;
-
-    @FXML
     private Button startButton;
 
     @FXML
@@ -91,6 +93,34 @@ public class SimulationController {
     
     @FXML
     public void initialize() {
+        startButton.setDisable(true);
+        heightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        weightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        timeTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
         timeCol.setReorderable(false);
         heightCol.setReorderable(false);
         accelerationCol.setReorderable(false);
@@ -105,8 +135,23 @@ public class SimulationController {
     }
     
     @FXML
-    void displayGraphsClicked(MouseEvent event) {
+    void displayGraphsClicked(MouseEvent event) throws IOException {
+        if (this.graphsController == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Graphs.fxml"));
+            Parent root = loader.load();
+            this.graphsController = loader.getController();
 
+            Stage stage = new Stage();
+            stage.setTitle("Graphs");
+            stage.setScene(new Scene(root));
+
+            this.graphsController.setStage(stage);
+
+            stage.show();
+            
+        } else {
+            this.graphsController.getStage().show();
+        }
     }
 
     @FXML
@@ -127,13 +172,9 @@ public class SimulationController {
         timeline.stop();
         timeline = null;
         engine = null;
+        graphsController = null;
         tableOfData.getItems().clear();
         pauseButton.setText("Pause");
-    }
-
-    @FXML
-    void returnToMenuClicked(MouseEvent event) {
-
     }
 
     @FXML
@@ -153,6 +194,16 @@ public class SimulationController {
             default -> 1;
         };
         
+        
+        // Input verification to be done here by Sahel What to verify:
+        /*
+        If all fields are numbers
+        Height should be bigger than 2000m
+        Mass should be bigger than 50kg and lower than 150kg
+        Time step should be bigger than 0.01 and smaller than 0.1
+        If not, make an alert box pop up!
+        */
+        
         double mass = Double.parseDouble(diverMass);
         double deltaTime = Double.parseDouble(timeStep);
         double startPos = Double.parseDouble(startingPosition);
@@ -168,10 +219,27 @@ public class SimulationController {
                 double timeF = engine.getTimeframe();
         
                 double[] row = engine.computationOfOneRow();
-                System.out.println(Arrays.toString(row));
                 if (row[0] <= 0) {
                     timeline.stop();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ResultsSummary.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        ResultsController rc = loader.getController();
+                        System.out.println(timeF);
+                        rc.setTimeTaken(timeF);
+                        Stage stage = new Stage();
+                        stage.setTitle("Hooray!");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException ex) {
+                        System.getLogger(SimulationController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                    }
                 }
+                
+                if (graphsController != null) {
+                    graphsController.addPointToGraphs(timeF, row[2], row[1], row[0]);
+                }
+                
                 SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
                 tableOfData.scrollTo(tableOfData.getItems().size());
                 tableOfData.getItems().add(sr);

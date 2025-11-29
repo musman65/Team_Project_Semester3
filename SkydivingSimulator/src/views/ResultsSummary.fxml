@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: magenta;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
+   <children>
+      <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="200.0" layoutX="40.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" layoutX="429.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" layoutX="214.0" layoutY="44.0" prefHeight="43.0" prefWidth="198.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="YOU DIDN'T DIE!!!!!" />
+      <Label alignment="CENTER" layoutX="214.0" layoutY="152.0" prefHeight="33.0" prefWidth="198.0" style="-fx-font-weight: bold; -fx-font-size: 15;" text="Summary:" />
+      <Label fx:id="timeTaken" layoutX="214.0" layoutY="178.0" prefHeight="33.0" prefWidth="198.0" style="-fx-font-size: 12;" text="Time taken to land: 300s" />
+   </children>
+</Pane>
