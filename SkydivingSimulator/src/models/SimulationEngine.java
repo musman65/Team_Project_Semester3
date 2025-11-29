@@ -47,21 +47,19 @@ public class SimulationEngine {
         int orderOfParachute = 1;
         
         if (timeframe >= deployementOfSmallParachute && timeframe < deployementOfBigParachute) { // DEPLOYS SMALL PARACHUTE
-            orderOfParachute = 1;
-        } else if (timeframe >= deployementOfBigParachute) { // DEPLOS BIG PARACHUTE
             orderOfParachute = 2;
-        } else if (timeframe < deployementOfSmallParachute) { // FREEFALL
+        } else if (timeframe >= deployementOfBigParachute) { // DEPLOS BIG PARACHUTE
             orderOfParachute = 3;
+        } else if (timeframe < deployementOfSmallParachute) { // FREEFALL
+            orderOfParachute = 1;
         }
-        
         double currentDragForce = pc.getDragForce(orderOfParachute, currentVelocity);
-        System.out.println(currentDragForce);
         double currentNetForce = pc.getNetForce(currentDragForce);
         double currentAcceleration = pc.getAcceleration(currentNetForce);
-        
+
         currentPosition = Double.parseDouble(String.format("%.2f", currentPosition)); 
         currentVelocity = Double.parseDouble(String.format("%.2f", currentVelocity)); 
-        currentAcceleration = Double.parseDouble(String.format("%.2f", currentAcceleration)); 
+//        currentAcceleration = Double.parseDouble(String.format("%.2f", currentAcceleration)); 
         currentNetForce = Double.parseDouble(String.format("%.2f", currentNetForce)); 
         
         double [] newConditions = {currentPosition, currentVelocity, currentAcceleration, currentNetForce};
