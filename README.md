@@ -53,7 +53,9 @@ skydiver-simulator/
 * Modify initial conditions such as:
 
   * Jump altitude
-  * Body orientation
+  * Body mass
+  * Time step
+  * Drag factor
 * Run the simulation to observe the resulting fall profile.
 
 ## Simulation Outputs
