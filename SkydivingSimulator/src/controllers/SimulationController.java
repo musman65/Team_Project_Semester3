@@ -34,13 +34,23 @@ import models.SimulationResults;
 import models.Skydiver;
 
 /**
- *
+ * Main controller responsible for running the skydiving simulation.
+ * This class:
+ * Validates user inputs.
+ * Initializes the simulation engine.
+ * Updates graphs and the table in real time.
+ * Controls simulation flow (start, pause, reset).
+ * 
+ * It acts as the central coordinator between the UI and the physics model.
  * @author 2472557
  */
 public class SimulationController {
 
+    // Core physics engine performing Euler-based calculations
     SimulationEngine engine;
+    // Timeline controlling the real-time simulation loop.
     Timeline timeline;
+    // Controller for the graph window (created only once).
     GraphsController graphsController;
 
     @FXML
@@ -96,8 +106,16 @@ public class SimulationController {
     @FXML
     private Button returnbtn;
 
+    /**
+     * Initializes UI components when the FXML loads.
+     * This method:
+     * Disables Start button until all inputs are filled.
+     * Sets up table columns for SimulationResults.
+     */
     public void initialize() {
         // From this part ->
+        
+        // Disable start button until all text fields have values
         startButton.setDisable(true);
         heightTextField.setOnKeyReleased(event -> {
             if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
@@ -125,6 +143,8 @@ public class SimulationController {
 
         // -> To here was done by Sahel Assadi. 
         // -> There was a branch problem. Rest of commits are good and authored to the respective team member.
+        
+        // Column configuration for the results table
         timeCol.setReorderable(false);
         heightCol.setReorderable(false);
         accelerationCol.setReorderable(false);
@@ -138,6 +158,10 @@ public class SimulationController {
         forceCol.setCellValueFactory(new PropertyValueFactory<>("force"));
     }
 
+    /**
+     * Opens or reveals the graph window displaying position, velocity,
+     * and acceleration in real time.
+     */
     @FXML
     void displayGraphsClicked(MouseEvent event) throws IOException {
         if (this.graphsController == null) {
@@ -158,6 +182,9 @@ public class SimulationController {
         }
     }
 
+    /**
+     * Toggles the simulation between paused and playing.
+     */
     @FXML
     void pauseButtonClicked(MouseEvent event) {
         if (timeline != null) {
@@ -171,6 +198,9 @@ public class SimulationController {
         }
     }
 
+    /**
+     * Resets the simulation, clearing graphs, table, and engine state.
+     */
     @FXML
     void resetButtonClicked(MouseEvent event) {
         timeline.stop();
@@ -181,6 +211,9 @@ public class SimulationController {
         pauseButton.setText("Pause");
     }
 
+    /**
+     * Validates user input, initializes simulation, and starts the timeline loop.
+     */
     @FXML
     void startButtonClicked(MouseEvent event) {
         
@@ -212,6 +245,7 @@ public class SimulationController {
         Double weight = Double.parseDouble(weightTextField.getText());
         Double time = Double.parseDouble(timeTextField.getText());
         
+        // Additional logical validation
         if (heightTextField.getText().charAt(0) == '-' || height < 2000) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Wrong Height Input");
@@ -271,6 +305,8 @@ public class SimulationController {
                 double timeF = engine.getTimeframe();
 
                 double[] row = engine.computationOfOneRow();
+                
+                // When height ≤ 0 → skydiver has landed
                 if (row[0] <= 0) {
                     timeline.stop();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ResultsSummary.fxml"));
@@ -289,10 +325,12 @@ public class SimulationController {
                     return;
                 }
 
+                // Update graphs if graph window is open
                 if (graphsController != null) {
                     graphsController.addPointToGraphs(timeF, row[2], row[1], row[0]);
                 }
 
+                // Update table
                 SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
                 tableOfData.getItems().add(sr);
                 tableOfData.scrollTo(tableOfData.getItems().size());
@@ -304,6 +342,9 @@ public class SimulationController {
 
     }
 
+     /**
+     * Returns user to the main start screen.
+     */
     @FXML
     private void returnbtn(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
