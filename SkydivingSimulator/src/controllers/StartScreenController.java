@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class StartScreenController implements Initializable {
 
     /**
-     * Initializes the controller class.
+     * This whole StartScreenController class is made by Sahel Assadi.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
