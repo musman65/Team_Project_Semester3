@@ -93,33 +93,7 @@ public class SimulationController {
     
     @FXML
     public void initialize() {
-        startButton.setDisable(true);
-        heightTextField.setOnKeyReleased(event -> {
-            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
-            startButton.setDisable(false);
-        }
-        else {
-            startButton.setDisable(true);
-        }
-        });
-        
-        weightTextField.setOnKeyReleased(event -> {
-            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
-            startButton.setDisable(false);
-        }
-        else {
-            startButton.setDisable(true);
-        }
-        });
-        
-        timeTextField.setOnKeyReleased(event -> {
-            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
-            startButton.setDisable(false);
-        }
-        else {
-            startButton.setDisable(true);
-        }
-        });
+       
         
         timeCol.setReorderable(false);
         heightCol.setReorderable(false);
@@ -248,5 +222,11 @@ public class SimulationController {
             timeline.setCycleCount(Animation.INDEFINITE);
             timeline.play();
         }
+    }
+    @FXML
+    private void returnbtn(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/StartScreen.fxml"));
+        stage.getScene().setRoot(root);
     }
 }
