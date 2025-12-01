@@ -245,11 +245,10 @@ public class SimulationController {
         Double weight = Double.parseDouble(weightTextField.getText());
         Double time = Double.parseDouble(timeTextField.getText());
         
-        // Additional logical validation
-        if (heightTextField.getText().charAt(0) == '-' || height < 2000) {
+        if (heightTextField.getText().charAt(0) == '-' || height < 3000) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Wrong Height Input");
-            error.setContentText("You entered: " + heightTextField.getText() + "\n Remember: Height must be bigger than 2000m.");
+            error.setContentText("You entered: " + heightTextField.getText() + "\n Remember: Height must be bigger than 3000m.");
             error.show();
             return;
         }

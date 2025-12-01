@@ -41,7 +41,7 @@ public class SimulationEngine {
      */
     public SimulationEngine(Skydiver diver) {
         if (diver == null) {
-            
+            diver = new Skydiver(4000, 0, -9.8, new SimulationParameters(1, 0.1, 75)); // Default skydiver
         } else {
             this.diver = diver;
         }
