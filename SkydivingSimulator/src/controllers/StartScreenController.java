@@ -18,8 +18,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
+ * Controller class for the application's start screen.
+ * This screen allows the user to either enter the simulation
+ * or exit the application. 
+ * It serves as the first UI the user sees when launching the program.
+ * 
  * @author 6321596
  */
 public class StartScreenController implements Initializable {
@@ -29,9 +32,17 @@ public class StartScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }
 
+    /**
+     * Event handler for the "Enter" button.
+     * Loads the main simulation window (MainView.fxml)
+     * and transitions the user from the start screen into the simulator.
+     *
+     * @param event the button click event
+     * @throws IOException if the FXML file fails to load
+     */
     @FXML
     private void enter(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -40,6 +51,12 @@ public class StartScreenController implements Initializable {
        
     }
 
+    /**
+     * Event handler for the "Exit" button.
+     * Closes the entire JavaFX application cleanly.
+     *
+     * @param event the button click event
+     */
     @FXML
     private void exit(ActionEvent event) {
         Platform.exit();
