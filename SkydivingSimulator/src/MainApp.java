@@ -23,7 +23,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MainView.fxml"));
+        // StartScreen.fxml and this main class is made by Sahel Assadi.
+        Parent root = FXMLLoader.load(getClass().getResource("/views/StartScreen.fxml"));
 
         stage.setTitle("Skydiving Simulator");
         stage.setScene(new Scene(root));

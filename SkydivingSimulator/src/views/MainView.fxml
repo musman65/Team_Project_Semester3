@@ -13,44 +13,44 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="764.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SimulationController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="911.0" style="-fx-background-color: #48A189;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SimulationController">
    <children>
-      <TableView fx:id="tableOfData" layoutX="342.0" layoutY="221.0" prefHeight="200.0" prefWidth="404.0">
+      <TableView fx:id="tableOfData" layoutX="390.0" layoutY="330.0" prefHeight="249.0" prefWidth="470.0">
         <columns>
-          <TableColumn fx:id="timeCol" prefWidth="57.5999755859375" text="Time" />
-          <TableColumn fx:id="heightCol" prefWidth="100.0" sortable="false" text="Height" />
-            <TableColumn fx:id="velocityCol" sortable="false" text="Velocity" />
-            <TableColumn fx:id="accelerationCol" prefWidth="74.4000244140625" sortable="false" text="Acceleration" />
-            <TableColumn fx:id="forceCol" prefWidth="90.0" sortable="false" text="Force" />
+          <TableColumn fx:id="timeCol" text="Time" />
+          <TableColumn fx:id="heightCol" prefWidth="88.79998779296875" sortable="false" text="Height" />
+            <TableColumn fx:id="velocityCol" prefWidth="81.60003662109375" sortable="false" text="Velocity" />
+            <TableColumn fx:id="accelerationCol" prefWidth="102.4000244140625" sortable="false" text="Acceleration" />
+            <TableColumn fx:id="forceCol" prefWidth="117.99993896484375" sortable="false" text="Force" />
         </columns>
       </TableView>
-      <HBox layoutY="54.0" prefHeight="164.0" prefWidth="485.0">
+      <HBox layoutX="138.0" layoutY="93.0" prefHeight="214.0" prefWidth="595.0">
          <children>
             <VBox prefHeight="337.0" prefWidth="590.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Parameters:">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="23.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="190.0" text="Initial Height (m)">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" text="Weight (kg)">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" text="Time step (s)">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" text="Drag Factor">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -79,38 +79,35 @@
             </VBox>
          </children>
       </HBox>
-      <Label alignment="CENTER" prefHeight="47.0" prefWidth="684.0" text="Skydiving Simulation">
+      <Label alignment="CENTER" layoutX="114.0" layoutY="14.0" prefHeight="47.0" prefWidth="684.0" text="Skydiving Simulation">
          <font>
-            <Font name="System Bold Italic" size="38.0" />
+            <Font name="System Bold Italic" size="51.0" />
          </font>
       </Label>
-      <VBox layoutX="110.0" layoutY="235.0" prefHeight="188.0" prefWidth="181.0" spacing="10.0">
-         <children>
-            <Button fx:id="startButton" mnemonicParsing="false" onMouseClicked="#startButtonClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Button>
-            <HBox prefHeight="39.0" prefWidth="187.0" spacing="27.0">
-               <children>
-                  <Button fx:id="pauseButton" mnemonicParsing="false" onMouseClicked="#pauseButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="resetButton" mnemonicParsing="false" onMouseClicked="#resetButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <Button fx:id="displayButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#displayGraphsClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Display Graphs">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
+      <Button fx:id="displayButton" layoutX="111.0" layoutY="480.0" mnemonicParsing="false" onMouseClicked="#displayGraphsClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #3E4DC7;" text="Display Graphs">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="pauseButton" layoutX="114.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#pauseButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: C7F04D;" text="Pause">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="resetButton" layoutX="214.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#resetButtonClicked" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: DB3723;" text="Reset">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="startButton" layoutX="111.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#startButtonClicked" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: #78F20C;" text="Start Simulation">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnbtn" layoutX="111.0" layoutY="529.0" mnemonicParsing="false" onAction="#returnbtn" prefHeight="38.0" prefWidth="181.0" style="-fx-background-color: gray;" text="Return to Main Menu">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
