@@ -183,92 +183,125 @@ public class SimulationController {
 
     @FXML
     void startButtonClicked(MouseEvent event) {
+        
+        if (!(isNumber(heightTextField.getText()))) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setHeaderText("Wrong Height Input");
+            error.setContentText("You entered: " + heightTextField.getText() + "\n Remember: Height must be a number.");
+            error.show();
+            return;
+        }
+        
+        if (!(isNumber(weightTextField.getText()))) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setHeaderText("Wrong Weight Input");
+            error.setContentText("You entered: " + weightTextField.getText() + "\nRemember: Weight must be a number.");
+            error.show();
+            return;
+        }
+        
+        if (!(isNumber(timeTextField.getText()))) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setHeaderText("Wrong Time Input");
+            error.setContentText("You entered: " + timeTextField.getText() + "\nRemember: Time must be bigger a number.");
+            error.show();
+            return;
+        }
+        
         Double height = Double.parseDouble(heightTextField.getText());
         Double weight = Double.parseDouble(weightTextField.getText());
         Double time = Double.parseDouble(timeTextField.getText());
+        
         if (heightTextField.getText().charAt(0) == '-' || height < 2000) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Wrong Height Input");
             error.setContentText("You entered: " + heightTextField.getText() + "\n Remember: Height must be bigger than 2000m.");
             error.show();
+            return;
         }
-        else if (weightTextField.getText().charAt(0) == '-' || weight < 50 || weight > 150) {
+        
+        if (weightTextField.getText().charAt(0) == '-' || weight < 50 || weight > 150) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Wrong Weight Input");
             error.setContentText("You entered: " + weightTextField.getText() + "\nRemember: Weight must be bigger than \n50kg or lower than 150kg.");
             error.show();
+            return;
         }
-        else if (timeTextField.getText().charAt(0) == '-' || time < 0.01 || time > 0.1) {
+        
+        if (timeTextField.getText().charAt(0) == '-' || time < 0.01 || time > 0.1) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Wrong Time Input");
             error.setContentText("You entered: " + timeTextField.getText() + "\nRemember: Time must be bigger than 0.01 and less than 0.1.");
             error.show();
-        } else {
-            String startingPosition = heightTextField.getText();
-            String diverMass = weightTextField.getText();
-            String timeStep = timeTextField.getText();
+            return;
+        } 
+        
+        String startingPosition = heightTextField.getText();
+        String diverMass = weightTextField.getText();
+        String timeStep = timeTextField.getText();
 
-            double dragFactor = 1;
+        double dragFactor = 1;
 
-            ToggleButton t = (ToggleButton) dragFactorToggleGroup.getSelectedToggle();
+        ToggleButton t = (ToggleButton) dragFactorToggleGroup.getSelectedToggle();
 
-            dragFactor = switch (t.getText()) {
-                case "Low" ->
-                    0.5;
-                case "Normal" ->
-                    1;
-                case "Strong" ->
-                    1.5;
-                default ->
-                    1;
-            };
+        dragFactor = switch (t.getText()) {
+            case "Low" ->
+                0.5;
+            case "Normal" ->
+                1;
+            case "Strong" ->
+                1.5;
+            default ->
+                1;
+        };
 
-            
-            double mass = Double.parseDouble(diverMass);
-            double deltaTime = Double.parseDouble(timeStep);
-            double startPos = Double.parseDouble(startingPosition);
 
-            if (engine == null) {
-                SimulationParameters params = new SimulationParameters(dragFactor, deltaTime, mass);
-                Skydiver diver = new Skydiver(startPos, 0.0, -9.8, params);
-                engine = new SimulationEngine(diver);
-            }
+        double mass = Double.parseDouble(diverMass);
+        double deltaTime = Double.parseDouble(timeStep);
+        double startPos = Double.parseDouble(startingPosition);
 
-            if (timeline == null) {
-                timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
-                    double timeF = engine.getTimeframe();
-
-                    double[] row = engine.computationOfOneRow();
-                    if (row[0] <= 0) {
-                        timeline.stop();
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ResultsSummary.fxml"));
-                        try {
-                            Parent root = loader.load();
-                            ResultsController rc = loader.getController();
-                            System.out.println(timeF);
-                            rc.setTimeTaken(timeF);
-                            Stage stage = new Stage();
-                            stage.setTitle("Hooray!");
-                            stage.setScene(new Scene(root));
-                            stage.show();
-                        } catch (IOException ex) {
-                            System.getLogger(SimulationController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                        }
-                    }
-
-                    if (graphsController != null) {
-                        graphsController.addPointToGraphs(timeF, row[2], row[1], row[0]);
-                    }
-
-                    SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
-                    tableOfData.scrollTo(tableOfData.getItems().size());
-                    tableOfData.getItems().add(sr);
-                }));
-
-                timeline.setCycleCount(Animation.INDEFINITE);
-                timeline.play();
-            }
+        if (engine == null) {
+            SimulationParameters params = new SimulationParameters(dragFactor, deltaTime, mass);
+            Skydiver diver = new Skydiver(startPos, 0.0, -9.8, params);
+            engine = new SimulationEngine(diver);
         }
+
+        if (timeline == null) {
+            timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
+                double timeF = engine.getTimeframe();
+
+                double[] row = engine.computationOfOneRow();
+                if (row[0] <= 0) {
+                    timeline.stop();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ResultsSummary.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        ResultsController rc = loader.getController();
+                        System.out.println(timeF);
+                        rc.setTimeTaken(timeF);
+                        Stage stage = new Stage();
+                        stage.setTitle("Hooray!");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException ex) {
+                        System.getLogger(SimulationController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                    }
+                    return;
+                }
+
+                if (graphsController != null) {
+                    graphsController.addPointToGraphs(timeF, row[2], row[1], row[0]);
+                }
+
+                SimulationResults sr = new SimulationResults(timeF, row[0], row[1], row[2], row[3]);
+                tableOfData.getItems().add(sr);
+                tableOfData.scrollTo(tableOfData.getItems().size());
+            }));
+
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+        }
+
     }
 
     @FXML
@@ -276,5 +309,14 @@ public class SimulationController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/views/StartScreen.fxml"));
         stage.getScene().setRoot(root);
+    }
+    
+    private boolean isNumber(String s ) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
