@@ -93,6 +93,33 @@ public class SimulationController {
     
     @FXML
     public void initialize() {
+        startButton.setDisable(true);
+        heightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        weightTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
+        
+        timeTextField.setOnKeyReleased(event -> {
+            if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
+            startButton.setDisable(false);
+        }
+        else {
+            startButton.setDisable(true);
+        }
+        });
        
         
         timeCol.setReorderable(false);
