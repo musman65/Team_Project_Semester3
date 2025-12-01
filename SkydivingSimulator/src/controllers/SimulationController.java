@@ -97,6 +97,7 @@ public class SimulationController {
     private Button returnbtn;
 
     public void initialize() {
+        // From this part ->
         startButton.setDisable(true);
         heightTextField.setOnKeyReleased(event -> {
             if (!(heightTextField.getText().equals("")) && !(weightTextField.getText().equals("")) && !(timeTextField.getText().equals(""))) {
@@ -122,6 +123,8 @@ public class SimulationController {
             }
         });
 
+        // -> To here was done by Sahel Assadi. 
+        // -> There was a branch problem. Rest of commits are good and authored to the respective team member.
         timeCol.setReorderable(false);
         heightCol.setReorderable(false);
         accelerationCol.setReorderable(false);
