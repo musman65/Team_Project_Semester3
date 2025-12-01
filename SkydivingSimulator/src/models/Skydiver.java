@@ -4,25 +4,35 @@
  */
 package models;
 
-/*
-TODO BY: Aswinth
 
-Represents the physical state of the skydiver,
-storing dynamic variables like current height,
-velocity, acceleration, and methods to update them.
- */
 /**
- *
- * @author Usman
+ * Represents a skydiver in the simulation.
+ * Holds the current state of the skydiver including position, velocity, acceleration, and net force.
+ * Also stores simulation parameters like mass, drag factor, and time step.
+ * 
+ * @author Aswinth
  */
 public class Skydiver {
 
+    // Simulation parameters associated with this skydiver (mass, drag factor, etc.) 
     private SimulationParameters Params;
+    // Current height of the skydiver above ground (meters)
     private double currentPosition;
+    // Current velocity of the skydiver (m/s) 
     private double currentVelocity;
+    // Current acceleration of the skydiver (m/s^2) 
     private double currentAcceleration;
+    // Current net force acting on the skydiver (Newtons)
     private double currentNetForce;
     
+     /**
+     * Constructs a Skydiver object with initial conditions and simulation parameters.
+     * 
+     * @param CurrentPosition initial height above the ground (m)
+     * @param CurrentVelocity initial velocity (m/s)
+     * @param CurrentAcceleration initial acceleration (m/s²)
+     * @param Params simulation parameters (mass, drag factor, deltaTime)
+     */
     public Skydiver(double CurrentPosition, double CurrentVelocity, double CurrentAcceleration, SimulationParameters Params) {
         this.currentPosition = CurrentPosition;
         this.currentAcceleration = CurrentAcceleration;
