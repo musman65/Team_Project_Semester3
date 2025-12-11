@@ -67,7 +67,7 @@ skydiver-simulator/
 ## Teamwork Summary
 There are three members that were part of this project: Aswinth Sinnathamby, Muhammad Usman and Sahel Assadi.
 Each member have contributed equally in the project. Here are some that each member did: 
-* Usman:
+* Usman: Usman did most of the model classes, such as PhysicsCalculations which is responsible for calculating all the forces acting upon the diver, SimulationEngine which takes computes these values for one given timeframe to display to the user using Euler's Method, and more. He also made graphs view window and the controller behind the graphs that display the position time graph, velocity time graph and acceleration time graph.
 * Sahel: Sahel has done all the views, such as the two scenes, the stage, scenebuilding, css coloring and organizing textfields, buttons and tableview. Also, he has done the StartScreenController class and done parts of the simulation controller class, such as popping out the error message, setting conditions for the data inputs and the return buton.
 * Aswinth: Aswinth did the Skydiver class which holds the current state of the skydiver including position, velocity, acceleration, and net force. It also stores simulation parameters like mass, drag factor, and time step. He also did a lot of controllers classes. He also did the SimulationResults class holds the data for a single time step of the skydiving simulation. Each instance represents the state of the skydiver at a specific point in time. He did the ResultsController for the results screen shown after the simulation finishes. He did a lot of the SimulationController class.
 
