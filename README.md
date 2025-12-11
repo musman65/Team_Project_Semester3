@@ -63,3 +63,11 @@ skydiver-simulator/
 * Altitude vs. time
 * Velocity vs. time
 * Acceleration vs. time
+
+## Teamwork Summary
+There are three members that were part of this project: Aswinth Sinnathamby, Muhammad Usman and Sahel Assadi.
+Each member have contributed equally in the project. Here are some that each member did: 
+* Usman:
+* Sahel: Sahel has done all the views, such as the two scenes, the stage, scenebuilding, css coloring and organizing textfields, buttons and tableview. Also, he has done the StartScreenController class and done parts of the simulation controller class, such as popping out the error message, setting conditions for the data inputs and the return buton.
+* Aswinth: 
+
